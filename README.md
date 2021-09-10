@@ -1,2 +1,3 @@
-# nasa-image-service
-Backend service for interacting with the NASA Image API
+# movie-database-service
+
+Backend service for interacting with the movie database API
