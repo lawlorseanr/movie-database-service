@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon ./server/index.js",
-    "build": "npx webpack --config ./webpack.config.js --mode=development --watch"
+    "build": "npx webpack --config ./webpack.config.js --mode=development --watch",
+    "seed": "node ./database/seed/index.js"
   },
   "keywords": [],
   "author": "sean lawlor",
@@ -15,6 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "moment": "^2.29.1",
+    "mongoose": "^6.0.5",
     "node": "^16.6.1",
     "nodemon": "^2.0.12",
     "prop-types": "^15.7.2",
