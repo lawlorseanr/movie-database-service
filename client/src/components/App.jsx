@@ -6,13 +6,14 @@ import List from "./List.jsx";
 
 const App = () => {
   const [list, setList] = useState([]);
+  const [user, setUser] = useState("");
   const [session, setSession] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   if (isLoggedIn) {
     return (
       <div id="app">
-        <Header setList={setList} session={session}/>
+        <Header setList={setList} session={session} user={user} />
         <List list={list} />
       </div>
     );
@@ -20,7 +21,7 @@ const App = () => {
 
   return (
     <div id="app">
-      <Login setLoggedIn={setLoggedIn} setSession={setSession}/>
+      <Login setLoggedIn={setLoggedIn} setSession={setSession} setUser={setUser} />
     </div>
   )
 

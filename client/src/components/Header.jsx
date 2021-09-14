@@ -5,9 +5,9 @@ import moment from "moment";
 import Title from "./Header/Title.jsx";
 import Search from "./Header/Search.jsx";
 
-const Header = ({ setList, session }) => {
+const Header = ({ setList, session, user }) => {
   return (<div id="app-header">
-    <Title />
+    <Title user={user} />
     <Search setList={setList} session={session} />
   </div>
   );
