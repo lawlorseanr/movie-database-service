@@ -1,0 +1,29 @@
+import React from "react";
+
+import Header from "./Header.jsx";
+import List from "./List.jsx";
+
+export default class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      list: [],
+    };
+
+    this.setList = this.setList.bind(this);
+  }
+
+  setList(list) {
+    this.setState({ list });
+  }
+
+  render() {
+    return (
+      <div id="app">
+        <Header setList={this.setList} />
+        <List list={this.state.list} />
+      </div>
+    );
+  }
+}
