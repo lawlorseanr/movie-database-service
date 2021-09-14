@@ -1,8 +1,34 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 
-const Search = ({ handleSearch }) => {
+import Server from "../../lib/Server.js";
+
+const handleSearch = (search, setList) => {
+  const gif = document.getElementById("loading-gif");
+  gif.style.opacity = 1;
+  Server.get("/api/movies", {
+    params: {
+      query: search,
+      page: 1,
+    },
+  })
+    .then((response) => {
+      console.log(response.data.results);
+      const list = response.data.results;
+      setList(list);
+    })
+    .catch((error) => console.error(error))
+    .finally(() => {
+      gif.style.opacity = 0;
+    });
+}
+
+const Search = ({ setList }) => {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    handleSearch(search || 'harry potter', setList);
+  }, [search])
+
   return (
     <div id="app-header-search">
       <label htmlFor="search-input">
@@ -21,15 +47,11 @@ const Search = ({ handleSearch }) => {
         value="Search"
         onClick={(e) => {
           e.preventDefault();
-          handleSearch(search);
+          handleSearch(search, setList);
         }}
       />
     </div>
   );
-};
-
-Search.propTypes = {
-  handleSearch: PropTypes.func.isRequired,
 };
 
 export default Search;
