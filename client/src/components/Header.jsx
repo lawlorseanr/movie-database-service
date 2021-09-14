@@ -5,10 +5,10 @@ import moment from "moment";
 import Title from "./Header/Title.jsx";
 import Search from "./Header/Search.jsx";
 
-const Header = ({ setList }) => {
+const Header = ({ setList, session }) => {
   return (<div id="app-header">
     <Title />
-    <Search setList={setList} />
+    <Search setList={setList} session={session} />
   </div>
   );
 };

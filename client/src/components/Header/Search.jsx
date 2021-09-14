@@ -2,31 +2,30 @@ import React, { useState, useEffect } from "react";
 
 import Server from "../../lib/Server.js";
 
-const handleSearch = (search, setList) => {
+const handleSearch = (query, session, setList) => {
   const gif = document.getElementById("loading-gif");
   gif.style.opacity = 1;
-  Server.get("/api/movies", {
-    params: {
-      query: search,
-      page: 1,
-    },
-  })
+  const data = { Authorization: session };
+  Server.post("/api/movies", data,
+    { params: { query } },
+  )
     .then((response) => {
-      console.log(response.data.results);
       const list = response.data.results;
       setList(list);
     })
-    .catch((error) => console.error(error))
+    .catch((error) => console.error({ error: 'Error querying server' }))
     .finally(() => {
       gif.style.opacity = 0;
     });
 }
 
-const Search = ({ setList }) => {
-  const [search, setSearch] = useState("");
+const Search = ({ setList, session }) => {
+  const [search, setSearch] = useState("harry potter");
 
   useEffect(() => {
-    handleSearch(search || 'harry potter', setList);
+    if (session) {
+      handleSearch(search, session, setList);
+    }
   }, [search])
 
   return (
@@ -47,7 +46,7 @@ const Search = ({ setList }) => {
         value="Search"
         onClick={(e) => {
           e.preventDefault();
-          handleSearch(search, setList);
+          handleSearch(search, session, setList);
         }}
       />
     </div>

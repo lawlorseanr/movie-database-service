@@ -1,16 +1,7 @@
-const router = require('express').Router();
-const { movies, shows } = require('../controllers');
+const api = require('./api');
+const validate = require('./validate');
 
-/* ========================
-        /api
-======================== */
-
-// movies
-router
-  .get('/movies', movies.get)
-
-// shows
-router
-  .get('/shows', shows.get)
-
-module.exports = router;
+module.exports = {
+  api,
+  validate,
+};
