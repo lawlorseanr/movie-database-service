@@ -11,4 +11,4 @@ Backend service for interacting with the movie database API
 6. For this example, the credentials are simply `admin` and `password`.
 7. By default, "Harry Potter" has been queried to render some tiles to the page. Change the query and you will see the results update in real time.
 8. Enjoy.
-9. Note: If you are unable to log in, make sure you have completed Step #2.
+9. Note: If you are unable to log in, make sure you have completed Step #2. If you have issues seeding the database, ensure you have mongodb-community, or similar, running on your computer.
